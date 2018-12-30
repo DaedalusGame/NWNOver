@@ -193,7 +193,7 @@ namespace NWNOver
                 }
             }
 
-            if(e.RowIndex < 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex < 0 && e.ColumnIndex >= 0)
             {
                 var cell = grid.Rows[grid.CurrentCell.RowIndex].Cells[e.ColumnIndex];
                 grid.CurrentCell = cell;
@@ -208,7 +208,7 @@ namespace NWNOver
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 var cell = grid.Rows[e.RowIndex].Cells[e.ColumnIndex];
-              
+
                 if (e.Button == MouseButtons.Middle && !grid.IsCurrentCellInEditMode)
                 {
                     grid.CurrentCell = cell;
@@ -221,7 +221,7 @@ namespace NWNOver
                     {
                         int row = (int)cell.Value;
                         string filename = ((TwoDARefColumn)File.Schema.Columns[e.ColumnIndex]).Filename;
-                        GotoTwoDALine(Path.GetFileNameWithoutExtension(filename),row);
+                        GotoTwoDALine(Path.GetFileNameWithoutExtension(filename), row);
                     }
                 }
             }
@@ -232,7 +232,7 @@ namespace NWNOver
             Environment.OpenTwoDALine(filename);
         }
 
-        private void GotoTwoDALine(string filename,int row)
+        private void GotoTwoDALine(string filename, int row)
         {
             Environment.OpenTwoDALine(filename, row);
         }
@@ -383,7 +383,7 @@ namespace NWNOver
         {
             var cell = grid_table.CurrentCell;
             uint editIndex = 0;
-            if(cell.Value != null)
+            if (cell.Value != null)
                 editIndex = (uint)(int)cell.Value;
             if (!Environment.IsUserStrRef(editIndex))
             {
@@ -416,36 +416,46 @@ namespace NWNOver
 
         internal string ClipCut()
         {
-            int row = grid_table.CurrentCell.RowIndex;
-            if (row >= 0)
+            if (grid_table.SelectedRows.Count > 0)
             {
-                var data = File.GetRow(row).Select(x => TwoDAFile.ValueToString(x)).ToArray();
-                File.ResetRow(row);
-                return string.Join(" ", data);
+                StringBuilder lines = new StringBuilder();
+                foreach (DataGridViewRow row in GetSelectedRows().OrderBy(x => x.Index))
+                {
+                    lines.AppendLine(string.Join(" ", File.GetRow(row.Index).Select(x => TwoDAFile.ValueToString(x))));
+                    File.ResetRow(row.Index);
+                }
+                return lines.ToString();
             }
             return null;
         }
 
         internal string ClipCopy()
         {
-            int row = grid_table.CurrentCell.RowIndex;
-            if (row >= 0)
+            if (grid_table.SelectedRows.Count > 0)
             {
-                var data = File.GetRow(row).Select(x => TwoDAFile.ValueToString(x)).ToArray();
-                return string.Join(" ", data);
+                StringBuilder lines = new StringBuilder();
+                foreach (DataGridViewRow row in GetSelectedRows().OrderBy(x => x.Index))
+                {
+                    lines.AppendLine(string.Join(" ", File.GetRow(row.Index).Select(x => TwoDAFile.ValueToString(x))));
+                }
+                return lines.ToString();
             }
             return null;
         }
 
         internal void ClipPaste(string v)
         {
-            int row = grid_table.CurrentCell.RowIndex;
-            if(row >= 0)
+            if (grid_table.SelectedRows.Count > 0)
             {
-                var split = TwoDAFile.SplitData(v);
-                if(split.Count() == File.Width)
+                var targetRows = GetPasteRows(grid_table.SelectedRows.Count == 1);
+                var lines = EnumerateMultiline(v).Where(x => !String.IsNullOrWhiteSpace(x)).Select(x => TwoDAFile.SplitData(x)).ToArray();
+                if (lines.All(split => split.Count() == File.Width))
                 {
-                    File.SetRow(row, split);
+                    var zipped = Enumerable.Zip(lines, targetRows, (x, y) => new Tuple<int, IEnumerable<string>>(y, x)).ToArray();
+                    foreach (var split in zipped)
+                    {
+                        File.SetRow(split.Item1, split.Item2);
+                    }
                 }
             }
         }
@@ -456,6 +466,41 @@ namespace NWNOver
             File.Schema = File.Schema.Copy();
             File.Schema.AddColumn(columnType);
             grid_table.Refresh();
+        }
+
+        private IEnumerable<string> EnumerateMultiline(string text)
+        {
+            var reader = new StringReader(text);
+            var line = reader.ReadLine();
+            while(line != null)
+            {
+                yield return line;
+                line = reader.ReadLine();
+            }
+        }
+
+        private IEnumerable<DataGridViewRow> GetSelectedRows()
+        {
+            foreach (DataGridViewRow row in grid_table.SelectedRows)
+            {
+                yield return row;
+            }
+        }
+
+        private IEnumerable<int> GetPasteRows(bool overshoot)
+        {
+            int highestIndex = -1;
+            foreach (var row in GetSelectedRows().OrderBy(x => x.Index))
+            {
+                if(row.Index > highestIndex)
+                    highestIndex = row.Index;
+                yield return row.Index;
+            }
+            while (overshoot)
+            {
+                highestIndex++;
+                yield return highestIndex;
+            }
         }
 
         private void menu_column_type_string_Click(object sender, EventArgs e)
@@ -491,7 +536,7 @@ namespace NWNOver
         private void menu_column_type_2daref_Click(object sender, EventArgs e)
         {
             var column = grid_table.CurrentCell.ColumnIndex;
-            string filename = Prompt.ShowTextDialog("Which 2da file should this column reference?","Question");
+            string filename = Prompt.ShowTextDialog("Which 2da file should this column reference?", "Question");
             if (filename != null)
             {
                 filename = Path.GetFileNameWithoutExtension(filename).ToLower() + ".2da";
