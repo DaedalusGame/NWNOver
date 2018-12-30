@@ -556,6 +556,37 @@ namespace NWNOver
             }
         }
 
+        private void menu_2da_open_refs_Click(object sender, EventArgs e)
+        {
+            var refFile = GetCurrentTwoDAControl().File;
+            OpenReferences(refFile, false);
+        }
+
+        private void menu_2da_open_refs_all_Click(object sender, EventArgs e)
+        {
+            var refFile = GetCurrentTwoDAControl().File;
+            OpenReferences(refFile, true);
+        }
+
+        private void OpenReferences(TwoDAFile refFile, bool recurse)
+        {
+            foreach (var path in refFile.Schema.GetReferencedTwoDAFiles())
+            {
+                if (!TwoDAControls.ContainsKey(Path.GetFileNameWithoutExtension(path)))
+                {
+                    if (Environment.HasFile(path))
+                    {
+                        TwoDAFile file = new TwoDAFile(Path.GetFileNameWithoutExtension(path));
+                        file.Read(File.OpenRead(Environment.GetFullPath(path)));
+                        file.Schema = Environment.SchemaDatabase.GetSchema(Path.GetFileNameWithoutExtension(path));
+                        OpenTwoDAFile(path, file, false);
+                        if(recurse)
+                            OpenReferences(file, true);
+                    }
+                }
+            }
+        }
+
         private void menu_tlk_set_rows_Click(object sender, EventArgs e)
         {
             var file = GetCurrentTLKControl().File;

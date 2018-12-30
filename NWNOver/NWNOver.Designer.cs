@@ -82,6 +82,8 @@
             this.columnHeaderFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_column_name = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_column_nameindex = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_2da_open_refs_all = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_2da_open_refs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -237,7 +239,9 @@
             this.menu_2da_set_rows,
             this.menu_2da_renumber,
             this.setColumnsToolStripMenuItem,
-            this.menu_2da_schema});
+            this.menu_2da_schema,
+            this.menu_2da_open_refs,
+            this.menu_2da_open_refs_all});
             this.menu_2da.Name = "menu_2da";
             this.menu_2da.Size = new System.Drawing.Size(152, 22);
             this.menu_2da.Text = "2da";
@@ -245,28 +249,28 @@
             // menu_2da_set_rows
             // 
             this.menu_2da_set_rows.Name = "menu_2da_set_rows";
-            this.menu_2da_set_rows.Size = new System.Drawing.Size(160, 22);
+            this.menu_2da_set_rows.Size = new System.Drawing.Size(182, 22);
             this.menu_2da_set_rows.Text = "Set Rows";
             this.menu_2da_set_rows.Click += new System.EventHandler(this.menu_2da_set_rows_Click);
             // 
             // menu_2da_renumber
             // 
             this.menu_2da_renumber.Name = "menu_2da_renumber";
-            this.menu_2da_renumber.Size = new System.Drawing.Size(160, 22);
+            this.menu_2da_renumber.Size = new System.Drawing.Size(182, 22);
             this.menu_2da_renumber.Text = "Renumber Rows";
             this.menu_2da_renumber.Click += new System.EventHandler(this.menu_2da_renumber_Click);
             // 
             // setColumnsToolStripMenuItem
             // 
             this.setColumnsToolStripMenuItem.Name = "setColumnsToolStripMenuItem";
-            this.setColumnsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.setColumnsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.setColumnsToolStripMenuItem.Text = "Set Columns";
             this.setColumnsToolStripMenuItem.Visible = false;
             // 
             // menu_2da_schema
             // 
             this.menu_2da_schema.Name = "menu_2da_schema";
-            this.menu_2da_schema.Size = new System.Drawing.Size(160, 22);
+            this.menu_2da_schema.Size = new System.Drawing.Size(182, 22);
             this.menu_2da_schema.Text = "Set Schema";
             this.menu_2da_schema.Click += new System.EventHandler(this.menu_2da_schema_Click);
             // 
@@ -561,6 +565,20 @@
             this.menu_column_nameindex.Text = "Name + Index";
             this.menu_column_nameindex.Click += new System.EventHandler(this.menu_column_nameindex_Click);
             // 
+            // menu_2da_open_refs_all
+            // 
+            this.menu_2da_open_refs_all.Name = "menu_2da_open_refs_all";
+            this.menu_2da_open_refs_all.Size = new System.Drawing.Size(182, 22);
+            this.menu_2da_open_refs_all.Text = "Open All Referenced";
+            this.menu_2da_open_refs_all.Click += new System.EventHandler(this.menu_2da_open_refs_all_Click);
+            // 
+            // menu_2da_open_refs
+            // 
+            this.menu_2da_open_refs.Name = "menu_2da_open_refs";
+            this.menu_2da_open_refs.Size = new System.Drawing.Size(182, 22);
+            this.menu_2da_open_refs.Text = "Open Referenced";
+            this.menu_2da_open_refs.Click += new System.EventHandler(this.menu_2da_open_refs_Click);
+            // 
             // NWNOver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,6 +657,8 @@
         private System.Windows.Forms.ToolStripMenuItem columnHeaderFormatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menu_column_name;
         private System.Windows.Forms.ToolStripMenuItem menu_column_nameindex;
+        private System.Windows.Forms.ToolStripMenuItem menu_2da_open_refs_all;
+        private System.Windows.Forms.ToolStripMenuItem menu_2da_open_refs;
     }
 }
 

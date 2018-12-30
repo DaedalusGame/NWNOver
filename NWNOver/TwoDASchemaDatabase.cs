@@ -88,6 +88,11 @@ namespace NWNOver
             currentSchema.AddColumn(new TwoDARefColumn(7, "spellschools.2da"));
             currentSchema.AddColumn(new TwoDARefColumn(8, "domains.2da"));
             currentSchema.AddColumn(new TwoDARefColumn(9, "domains.2da"));
+            currentSchema.AddColumn(new FileRefColumn(11, "{0}.2da"));
+            currentSchema.AddColumn(new FileRefColumn(12, "{0}.2da"));
+            currentSchema.AddColumn(new FileRefColumn(13, "{0}.2da"));
+            currentSchema.AddColumn(new FileRefColumn(14, "{0}.2da"));
+            currentSchema.AddColumn(new BoolColumn(16));
             AddSchema("packages", currentSchema);
 
             currentSchema = new TwoDASchema();
@@ -287,6 +292,10 @@ namespace NWNOver
 
             currentSchema = new TwoDASchema();
             currentSchema.AddColumn(new IntColumn(1));
+            AddSchema("cls_atk_*", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.AddColumn(new IntColumn(1));
             AddSchema("cls_bfeat_*", currentSchema);
 
             currentSchema = new TwoDASchema();
@@ -339,6 +348,112 @@ namespace NWNOver
             AddSchema("cls_feat_sorc", currentSchema);
             AddSchema("cls_feat_wiz", currentSchema);
             AddSchema("cls_feat_wm", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.AddColumn(new IntColumn(1));
+            currentSchema.AddColumn(new IntColumn(2));
+            currentSchema.AddColumn(new IntColumn(3));
+            currentSchema.AddColumn(new IntColumn(4));
+            AddSchema("cls_savthr_*", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.LabelColumn = 1;
+            currentSchema.AddColumn(new TwoDARefColumn(2,"skills.2da"));
+            currentSchema.AddColumn(new BoolColumn(3));
+            AddSchema("cls_skill_*", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.AddColumn(new IntColumn(1));
+            currentSchema.AddColumn(new IntColumn(2));
+            currentSchema.AddColumn(new IntColumn(3));
+            currentSchema.AddColumn(new IntColumn(4));
+            currentSchema.AddColumn(new IntColumn(5));
+            currentSchema.AddColumn(new IntColumn(6));
+            currentSchema.AddColumn(new IntColumn(7));
+            currentSchema.AddColumn(new IntColumn(8));
+            currentSchema.AddColumn(new IntColumn(9));
+            currentSchema.AddColumn(new IntColumn(10));
+            currentSchema.AddColumn(new IntColumn(11));
+            currentSchema.AddColumn(new IntColumn(12));
+            AddSchema("cls_spgn_*", currentSchema);
+            AddSchema("cls_spgn_bard", currentSchema);
+            AddSchema("cls_spgn_cler", currentSchema);
+            AddSchema("cls_spgn_dru", currentSchema);
+            AddSchema("cls_spgn_pal", currentSchema);
+            AddSchema("cls_spgn_rang", currentSchema);
+            AddSchema("cls_spgn_sorc", currentSchema);
+            AddSchema("cls_spgn_wiz", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.AddColumn(new IntColumn(1));
+            currentSchema.AddColumn(new IntColumn(2));
+            currentSchema.AddColumn(new IntColumn(3));
+            currentSchema.AddColumn(new IntColumn(4));
+            currentSchema.AddColumn(new IntColumn(5));
+            currentSchema.AddColumn(new IntColumn(6));
+            currentSchema.AddColumn(new IntColumn(7));
+            currentSchema.AddColumn(new IntColumn(8));
+            currentSchema.AddColumn(new IntColumn(9));
+            currentSchema.AddColumn(new IntColumn(10));
+            currentSchema.AddColumn(new IntColumn(11));
+            AddSchema("cls_spkn_*", currentSchema);
+            AddSchema("cls_spkn_bard", currentSchema);
+            AddSchema("cls_spkn_sorc", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.LabelColumn = 1;
+            currentSchema.AddColumn(new StrRefColumn(2));
+            currentSchema.AddColumn(new EnumColumn(6, new string[] { "N", "R", "G", "Y", "W", null }, new Dictionary<string, string>()
+            {
+                { "N", "N - None" },
+                { "R", "R - Red" },
+                { "G", "G - Green" },
+                { "Y", "Y - Yellow" },
+                { "W", "W - White" },
+            }));
+            currentSchema.AddColumn(new EnumColumn(7, new string[] { "P", "S", "F", "L", "SW", "FW", "LW", "ST", "FT", "LT", "SWT", "FWT", "LWT", null }, new Dictionary<string, string>()
+            {
+                { "P", "P - Part-based" },
+                { "S", "S - Simple" },
+                { "F", "F - Full-sized" },
+                { "L", "L - Large" },
+                { "SW", "S - Simple (Wings)" },
+                { "FW", "F - Full-sized (Wings)" },
+                { "LW", "L - Large (Wings)" },
+                { "ST", "S - Simple (Tails)" },
+                { "FT", "F - Full-sized (Tails)" },
+                { "LT", "L - Large (Tails)" },
+                { "SWT", "S - Simple (Wings and Tails)" },
+                { "FWT", "F - Full-sized (Wings and Tails)" },
+                { "LWT", "L - Large (Wings and Tails)" },
+                { "s", "s - Placeable (?)" },
+            }));
+            currentSchema.AddColumn(new FloatColumn(8));
+            currentSchema.AddColumn(new FloatColumn(9));
+            currentSchema.AddColumn(new FloatColumn(10));
+            currentSchema.AddColumn(new FloatColumn(11));
+            currentSchema.AddColumn(new EnumColumn(20, new string[] { "H", "L", null }));
+            currentSchema.AddColumn(new BoolColumn(21));
+            currentSchema.AddColumn(new BoolColumn(23));
+            currentSchema.AddColumn(new BoolColumn(24));
+            currentSchema.AddColumn(new TwoDARefColumn(26,"creaturesize.2da"));
+            currentSchema.AddColumn(new TwoDARefColumn(28, "footstepsounds.2da"));
+            currentSchema.AddColumn(new TwoDARefColumn(29, "appearancesndset.2da"));
+            currentSchema.AddColumn(new BoolColumn(30));
+            currentSchema.AddColumn(new TwoDARefColumn(34, "bodybag.2da"));
+            currentSchema.AddColumn(new BoolColumn(35));
+            AddSchema("appearance", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.LabelColumn = 1;
+            currentSchema.AddColumn(new StrRefColumn(2));
+            currentSchema.AddColumn(new TwoDARefColumn(3, "placeables.2da"));
+            AddSchema("bodybag", currentSchema);
+
+            currentSchema = new TwoDASchema();
+            currentSchema.LabelColumn = 1;
+            currentSchema.AddColumn(new StrRefColumn(3));
+            AddSchema("creaturesize", currentSchema);
         }
     }
 }

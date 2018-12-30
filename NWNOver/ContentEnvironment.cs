@@ -200,7 +200,7 @@ namespace NWNOver
 
         public void OpenTwoDALine(string filename, int line)
         {
-            OnOpenTwoDALine?.Invoke(filename,line);
+            OnOpenTwoDALine?.Invoke(filename, line);
         }
 
         public void OpenTLKLine(string filename, uint line, bool edit)

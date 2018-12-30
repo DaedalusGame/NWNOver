@@ -240,7 +240,7 @@ namespace NWNOver.TwoDA
         private static string FormatRemoteLabel(TwoDAFile remote, int row)
         {
             string str = row.ToString();
-            if(remote != null)
+            if(remote != null && row >= 0 && row < remote.Height)
                 str = remote.Schema.GetLabel(remote, row);
             return str;
         }
@@ -629,6 +629,11 @@ namespace NWNOver.TwoDA
             copy.Tooltips = new Dictionary<int, ExtraDataTooltip>(Tooltips);
             copy.Name = null;
             return copy;
+        }
+
+        public IEnumerable<string> GetReferencedTwoDAFiles()
+        {
+            return Columns.Values.OfType<TwoDARefColumn>().Select(x => x.Filename);
         }
     }
 }

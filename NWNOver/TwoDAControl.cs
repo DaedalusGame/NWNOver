@@ -95,6 +95,7 @@ namespace NWNOver
 
         internal void Open2DALine(int line)
         {
+            line = Math.Max(0, line);
             MainForm.tabControl1.SelectedTab = Tab;
             MainForm.tabControl1.Select();
             grid_table.CurrentCell = grid_table.Rows[line].Cells[0];
