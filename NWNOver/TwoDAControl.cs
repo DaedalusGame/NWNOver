@@ -50,19 +50,41 @@ namespace NWNOver
             Environment.OnFileRefFormatChanged += (env) => grid_table.Refresh();
             Environment.OnTwoDARefFormatChanged += (env) => grid_table.Refresh();
             Environment.OnBoolFormatChanged += (env) => grid_table.Refresh();
+            Environment.OnColumnFormatChanged += Environment_OnColumnFormatChanged; ;
             BindingSource source = new BindingSource();
             source.DataSource = file;
 
             grid_table.AutoGenerateColumns = false;
+            UpdateColumns();
 
+            grid_table.DataSource = source;
+        }
 
+        private void UpdateColumns()
+        {
+            grid_table.Columns.Clear();
             for (int i = 0; i < File.IndexColumns; i++)
             {
                 string columnName = File.IndexNames[i];
-                grid_table.Columns.Add(new DataGridViewTextBoxColumn() { Name = columnName, DataPropertyName = "column" + i });
+                grid_table.Columns.Add(new DataGridViewTextBoxColumn() { Name = FormatColumnName(columnName,i), DataPropertyName = "column" + i });
             }
+        }
 
-            grid_table.DataSource = source;
+        private void Environment_OnColumnFormatChanged(ContentEnvironment obj)
+        {
+            UpdateColumns();
+        }
+
+        private string FormatColumnName(string name, int index)
+        {
+            switch(Environment.ColumnFormat)
+            {
+                case (ColumnFormat.Name):
+                    return name;
+                case (ColumnFormat.NameIndex):
+                    return String.Format("{1} - {0}",name,index);
+            }
+            throw new Exception();
         }
 
         public void SetPath(string path)
@@ -223,6 +245,11 @@ namespace NWNOver
                         string filename = ((TwoDARefColumn)File.Schema.Columns[e.ColumnIndex]).Filename;
                         GotoTwoDALine(Path.GetFileNameWithoutExtension(filename), row);
                     }
+                    if (cell.Value != null && File.Schema.IsType<FileRefColumn>(e.ColumnIndex))
+                    {
+                        string filename = ((FileRefColumn)File.Schema.Columns[e.ColumnIndex]).FormatFilename((string)cell.Value);
+                        GotoFile(filename);
+                    }
                 }
             }
         }
@@ -235,6 +262,11 @@ namespace NWNOver
         private void GotoTwoDALine(string filename, int row)
         {
             Environment.OpenTwoDALine(filename, row);
+        }
+
+        private void GotoFile(string filename)
+        {
+            Environment.OpenFile(filename);
         }
 
         private void GotoTLKLine(uint strref, bool edit)

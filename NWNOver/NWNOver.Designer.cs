@@ -79,6 +79,9 @@
             this.btn_cut = new System.Windows.Forms.Button();
             this.btn_copy = new System.Windows.Forms.Button();
             this.btn_paste = new System.Windows.Forms.Button();
+            this.columnHeaderFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_name = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_nameindex = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -302,7 +305,8 @@
             this.strRefFormatToolStripMenuItem,
             this.fileRefFormatToolStripMenuItem,
             this.daRefFormatToolStripMenuItem,
-            this.booleanFormatToolStripMenuItem});
+            this.booleanFormatToolStripMenuItem,
+            this.columnHeaderFormatToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
@@ -316,7 +320,7 @@
             this.menu_strref_both,
             this.menu_strref_full});
             this.strRefFormatToolStripMenuItem.Name = "strRefFormatToolStripMenuItem";
-            this.strRefFormatToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.strRefFormatToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.strRefFormatToolStripMenuItem.Text = "StrRef Format";
             // 
             // menu_strref_strref
@@ -354,7 +358,7 @@
             this.menu_fileref_lower,
             this.menu_fileref_original});
             this.fileRefFormatToolStripMenuItem.Name = "fileRefFormatToolStripMenuItem";
-            this.fileRefFormatToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.fileRefFormatToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.fileRefFormatToolStripMenuItem.Text = "FileRef Format";
             // 
             // menu_fileref_upper
@@ -385,7 +389,7 @@
             this.menu_2daref_upper,
             this.menu_2daref_lower});
             this.daRefFormatToolStripMenuItem.Name = "daRefFormatToolStripMenuItem";
-            this.daRefFormatToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.daRefFormatToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.daRefFormatToolStripMenuItem.Text = "2daRef Format";
             // 
             // menu_2daref_label
@@ -415,20 +419,20 @@
             this.menu_bool_text,
             this.menu_bool_number});
             this.booleanFormatToolStripMenuItem.Name = "booleanFormatToolStripMenuItem";
-            this.booleanFormatToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.booleanFormatToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.booleanFormatToolStripMenuItem.Text = "Boolean Format";
             // 
             // menu_bool_text
             // 
             this.menu_bool_text.Name = "menu_bool_text";
-            this.menu_bool_text.Size = new System.Drawing.Size(128, 22);
+            this.menu_bool_text.Size = new System.Drawing.Size(152, 22);
             this.menu_bool_text.Text = "True/False";
             this.menu_bool_text.Click += new System.EventHandler(this.menu_bool_text_Click);
             // 
             // menu_bool_number
             // 
             this.menu_bool_number.Name = "menu_bool_number";
-            this.menu_bool_number.Size = new System.Drawing.Size(128, 22);
+            this.menu_bool_number.Size = new System.Drawing.Size(152, 22);
             this.menu_bool_number.Text = "0/1";
             this.menu_bool_number.Click += new System.EventHandler(this.menu_bool_number_Click);
             // 
@@ -437,7 +441,8 @@
             this.menu_environment.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_environment_set});
             this.menu_environment.Name = "menu_environment";
-            this.menu_environment.Size = new System.Drawing.Size(12, 20);
+            this.menu_environment.Size = new System.Drawing.Size(103, 20);
+            this.menu_environment.Text = "<environment>";
             // 
             // menu_environment_set
             // 
@@ -533,6 +538,29 @@
             this.btn_paste.UseVisualStyleBackColor = true;
             this.btn_paste.Click += new System.EventHandler(this.btn_paste_Click);
             // 
+            // columnHeaderFormatToolStripMenuItem
+            // 
+            this.columnHeaderFormatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_column_name,
+            this.menu_column_nameindex});
+            this.columnHeaderFormatToolStripMenuItem.Name = "columnHeaderFormatToolStripMenuItem";
+            this.columnHeaderFormatToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.columnHeaderFormatToolStripMenuItem.Text = "Column Header Format";
+            // 
+            // menu_column_name
+            // 
+            this.menu_column_name.Name = "menu_column_name";
+            this.menu_column_name.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_name.Text = "Name";
+            this.menu_column_name.Click += new System.EventHandler(this.menu_column_name_Click);
+            // 
+            // menu_column_nameindex
+            // 
+            this.menu_column_nameindex.Name = "menu_column_nameindex";
+            this.menu_column_nameindex.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_nameindex.Text = "Name + Index";
+            this.menu_column_nameindex.Click += new System.EventHandler(this.menu_column_nameindex_Click);
+            // 
             // NWNOver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,6 +636,9 @@
         private System.Windows.Forms.Button btn_cut;
         private System.Windows.Forms.Button btn_copy;
         private System.Windows.Forms.Button btn_paste;
+        private System.Windows.Forms.ToolStripMenuItem columnHeaderFormatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_name;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_nameindex;
     }
 }
 

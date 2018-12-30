@@ -37,6 +37,12 @@ namespace NWNOver
         Number,
     }
 
+    public enum ColumnFormat
+    {
+        Name,
+        NameIndex,
+    }
+
     public class ContentEnvironment
     {
         Dictionary<StrRefFormat, string> StrRefFormatStrings = new Dictionary<StrRefFormat, string>()
@@ -117,6 +123,18 @@ namespace NWNOver
                 Config.MarkDirty();
             }
         }
+        public ColumnFormat ColumnFormat
+        {
+            get
+            {
+                return Config.ColumnFormat;
+            }
+            set
+            {
+                Config.ColumnFormat = value;
+                Config.MarkDirty();
+            }
+        }
 
         public TLKFile DefaultTLK;
         public TLKFile UserTLK;
@@ -126,6 +144,7 @@ namespace NWNOver
         public event Action<ContentEnvironment> OnFileRefFormatChanged;
         public event Action<ContentEnvironment> OnTwoDARefFormatChanged;
         public event Action<ContentEnvironment> OnBoolFormatChanged;
+        public event Action<ContentEnvironment> OnColumnFormatChanged;
         public event Action<ContentEnvironment> OnTLKChanged;
 
         public event Action<string, int> OnOpenTwoDALine;
@@ -153,6 +172,15 @@ namespace NWNOver
         {
             SchemaDatabase = new TwoDASchemaDatabase(this);
             SchemaDatabase.Setup();
+        }
+
+        public void OpenFile(string filename)
+        {
+            var ext = Path.GetExtension(filename.ToLower());
+            if (ext == ".2da")
+            {
+                OpenTwoDALine(Path.GetFileNameWithoutExtension(filename));
+            }
         }
 
         public void OpenTwoDALine(string filename)
@@ -218,6 +246,12 @@ namespace NWNOver
         {
             BoolFormat = format;
             OnBoolFormatChanged?.Invoke(this);
+        }
+
+        internal void SetColumnFormat(ColumnFormat format)
+        {
+            ColumnFormat = format;
+            OnColumnFormatChanged?.Invoke(this);
         }
 
         public void SetDefaultTLK(TLKFile file)

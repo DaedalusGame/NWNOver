@@ -386,6 +386,7 @@ namespace NWNOver
             UpdateBoolMenu();
             UpdateFileRefMenu();
             UpdateTwoDARefMenu();
+            UpdateColumnMenu();
         }
 
         private void UpdateStrRefMenu()
@@ -416,6 +417,11 @@ namespace NWNOver
             menu_2daref_upper.Checked = Environment.TwoDARefFormat == TwoDARefFormat.UpperCaseNumber;
         }
 
+        private void UpdateColumnMenu()
+        {
+            menu_column_name.Checked = Environment.ColumnFormat == ColumnFormat.Name;
+            menu_column_nameindex.Checked = Environment.ColumnFormat == ColumnFormat.NameIndex;
+        }
 
         private void UpdateEnvironment()
         {
@@ -504,6 +510,16 @@ namespace NWNOver
         private void menu_bool_number_Click(object sender, EventArgs e)
         {
             Environment.SetBoolFormat(BoolFormat.Number);
+        }
+
+        private void menu_column_name_Click(object sender, EventArgs e)
+        {
+            Environment.SetColumnFormat(ColumnFormat.Name);
+        }
+
+        private void menu_column_nameindex_Click(object sender, EventArgs e)
+        {
+            Environment.SetColumnFormat(ColumnFormat.NameIndex);
         }
 
         private void menu_edit_DropDownOpening(object sender, EventArgs e)

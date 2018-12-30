@@ -274,6 +274,11 @@ namespace NWNOver.TwoDA
             else
                 return "****";
         }
+
+        public string FormatFilename(string filename)
+        {
+            return string.Format(FilePattern, filename).ToLower();
+        }
     }
 
     public class FlagsColumn : IntColumn

@@ -35,6 +35,8 @@ namespace NWNOver
         public FileRefFormat FileRefFormat = FileRefFormat.LowerCase;
         [JsonProperty]
         public BoolFormat BoolFormat = BoolFormat.Text;
+        [JsonProperty]
+        public ColumnFormat ColumnFormat = ColumnFormat.Name;
 
         public void MarkDirty()
         {
