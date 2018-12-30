@@ -449,5 +449,54 @@ namespace NWNOver
                 }
             }
         }
+
+        private void SetColumnType(TwoDAColumn columnType)
+        {
+            columnType.SetEnvironment(Environment);
+            File.Schema = File.Schema.Copy();
+            File.Schema.AddColumn(columnType);
+            grid_table.Refresh();
+        }
+
+        private void menu_column_type_string_Click(object sender, EventArgs e)
+        {
+            var column = grid_table.CurrentCell.ColumnIndex;
+            SetColumnType(new StringColumn(column));
+        }
+
+        private void menu_column_type_bool_Click(object sender, EventArgs e)
+        {
+            var column = grid_table.CurrentCell.ColumnIndex;
+            SetColumnType(new BoolColumn(column));
+        }
+
+        private void menu_column_type_int_Click(object sender, EventArgs e)
+        {
+            var column = grid_table.CurrentCell.ColumnIndex;
+            SetColumnType(new IntColumn(column));
+        }
+
+        private void menu_column_type_float_Click(object sender, EventArgs e)
+        {
+            var column = grid_table.CurrentCell.ColumnIndex;
+            SetColumnType(new FloatColumn(column));
+        }
+
+        private void menu_column_type_strref_Click(object sender, EventArgs e)
+        {
+            var column = grid_table.CurrentCell.ColumnIndex;
+            SetColumnType(new StrRefColumn(column));
+        }
+
+        private void menu_column_type_2daref_Click(object sender, EventArgs e)
+        {
+            var column = grid_table.CurrentCell.ColumnIndex;
+            string filename = Prompt.ShowTextDialog("Which 2da file should this column reference?","Question");
+            if (filename != null)
+            {
+                filename = Path.GetFileNameWithoutExtension(filename).ToLower() + ".2da";
+                SetColumnType(new TwoDARefColumn(column, filename));
+            }
+        }
     }
 }

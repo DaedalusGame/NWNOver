@@ -44,6 +44,13 @@
             this.menu_column_histogram = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_2da = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_type_strref = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_type_string = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_type_bool = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_type_int = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_type_float = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_column_type_2daref = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid_table)).BeginInit();
             this.menu_bool.SuspendLayout();
             this.menu_strref.SuspendLayout();
@@ -149,9 +156,10 @@
             // menu_column
             // 
             this.menu_column.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menu_column_histogram});
+            this.menu_column_histogram,
+            this.setTypeToolStripMenuItem});
             this.menu_column.Name = "menu_column";
-            this.menu_column.Size = new System.Drawing.Size(163, 26);
+            this.menu_column.Size = new System.Drawing.Size(163, 70);
             // 
             // menu_column_histogram
             // 
@@ -165,14 +173,69 @@
             this.menu_2da.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeToolStripMenuItem});
             this.menu_2da.Name = "menu_tlk";
-            this.menu_2da.Size = new System.Drawing.Size(153, 48);
+            this.menu_2da.Size = new System.Drawing.Size(104, 26);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // setTypeToolStripMenuItem
+            // 
+            this.setTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_column_type_string,
+            this.menu_column_type_bool,
+            this.menu_column_type_int,
+            this.menu_column_type_float,
+            this.menu_column_type_strref,
+            this.menu_column_type_2daref});
+            this.setTypeToolStripMenuItem.Name = "setTypeToolStripMenuItem";
+            this.setTypeToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.setTypeToolStripMenuItem.Text = "Set Type";
+            // 
+            // menu_column_type_strref
+            // 
+            this.menu_column_type_strref.Name = "menu_column_type_strref";
+            this.menu_column_type_strref.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_type_strref.Text = "StrRef";
+            this.menu_column_type_strref.Click += new System.EventHandler(this.menu_column_type_strref_Click);
+            // 
+            // menu_column_type_string
+            // 
+            this.menu_column_type_string.Name = "menu_column_type_string";
+            this.menu_column_type_string.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_type_string.Text = "String";
+            this.menu_column_type_string.Click += new System.EventHandler(this.menu_column_type_string_Click);
+            // 
+            // menu_column_type_bool
+            // 
+            this.menu_column_type_bool.Name = "menu_column_type_bool";
+            this.menu_column_type_bool.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_type_bool.Text = "Boolean";
+            this.menu_column_type_bool.Click += new System.EventHandler(this.menu_column_type_bool_Click);
+            // 
+            // menu_column_type_int
+            // 
+            this.menu_column_type_int.Name = "menu_column_type_int";
+            this.menu_column_type_int.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_type_int.Text = "Integer";
+            this.menu_column_type_int.Click += new System.EventHandler(this.menu_column_type_int_Click);
+            // 
+            // menu_column_type_float
+            // 
+            this.menu_column_type_float.Name = "menu_column_type_float";
+            this.menu_column_type_float.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_type_float.Text = "Float";
+            this.menu_column_type_float.Click += new System.EventHandler(this.menu_column_type_float_Click);
+            // 
+            // menu_column_type_2daref
+            // 
+            this.menu_column_type_2daref.Name = "menu_column_type_2daref";
+            this.menu_column_type_2daref.Size = new System.Drawing.Size(152, 22);
+            this.menu_column_type_2daref.Text = "2daRef";
+            this.menu_column_type_2daref.Click += new System.EventHandler(this.menu_column_type_2daref_Click);
             // 
             // TwoDAControl
             // 
@@ -207,5 +270,12 @@
         private System.Windows.Forms.ToolStripMenuItem menu_column_histogram;
         public System.Windows.Forms.ContextMenuStrip menu_2da;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_type_string;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_type_bool;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_type_int;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_type_float;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_type_strref;
+        private System.Windows.Forms.ToolStripMenuItem menu_column_type_2daref;
     }
 }

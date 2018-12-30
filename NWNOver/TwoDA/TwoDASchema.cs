@@ -49,6 +49,13 @@ namespace NWNOver.TwoDA
         }
     }
 
+    public class StringColumn : TwoDAColumn
+    {
+        public StringColumn(int column) : base(column)
+        {
+        }
+    }
+
     public class StrRefColumn : IntColumn
     {
         public StrRefColumn(int column) : base(column)
@@ -608,6 +615,15 @@ namespace NWNOver.TwoDA
         public string GetLabel(TwoDAFile file, int row)
         {
             return file.Get(LabelColumn, row);
+        }
+
+        public TwoDASchema Copy()
+        {
+            TwoDASchema copy = (TwoDASchema)MemberwiseClone();
+            copy.Columns = new Dictionary<int, TwoDAColumn>(Columns);
+            copy.Tooltips = new Dictionary<int, ExtraDataTooltip>(Tooltips);
+            copy.Name = null;
+            return copy;
         }
     }
 }
