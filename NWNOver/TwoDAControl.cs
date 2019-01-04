@@ -105,23 +105,25 @@ namespace NWNOver
         {
             var grid = sender as DataGridView;
             var rowIdx = (e.RowIndex).ToString();
+            var labelText = File.Schema.GetLabel(File, e.RowIndex);
 
             var centerFormat = new StringFormat()
             {
                 // right alignment might actually make more sense for numbers
-                Alignment = StringAlignment.Center,
-
+                Alignment = StringAlignment.Far,
                 LineAlignment = StringAlignment.Center
             };
+            var totalText = labelText + " " + rowIdx;
             //get the size of the string
-            Size textSize = TextRenderer.MeasureText(rowIdx, this.Font);
+            Size textSize = TextRenderer.MeasureText(totalText, this.Font);
+            textSize.Width += 10;
             //if header width lower then string width then resize
-            if (grid.RowHeadersWidth < textSize.Width + 40)
+            if (grid.RowHeadersWidth < textSize.Width)
             {
-                grid.RowHeadersWidth = textSize.Width + 40;
+                grid.RowHeadersWidth = textSize.Width;
             }
             var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
-            e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+            e.Graphics.DrawString(totalText, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
 
         }
 

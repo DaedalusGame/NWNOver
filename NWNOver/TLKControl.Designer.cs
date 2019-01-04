@@ -35,9 +35,9 @@
             this.menu_tlk = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menu_tlk_setdefault = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_tlk_setuser = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu_flags = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_flags = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,6 +71,7 @@
             this.grid_table.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grid_table.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.grid_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_table.Location = new System.Drawing.Point(3, 3);
             this.grid_table.Name = "grid_table";
@@ -106,7 +107,7 @@
             this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.menu_tlk.Name = "menu_tlk";
-            this.menu_tlk.Size = new System.Drawing.Size(155, 98);
+            this.menu_tlk.Size = new System.Drawing.Size(155, 76);
             this.menu_tlk.Opening += new System.ComponentModel.CancelEventHandler(this.menu_tlk_Opening);
             this.menu_tlk.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_tlk_ItemClicked);
             // 
@@ -122,10 +123,10 @@
             this.menu_tlk_setuser.Size = new System.Drawing.Size(154, 22);
             this.menu_tlk_setuser.Text = "Set User TLK";
             // 
-            // menu_flags
+            // toolStripSeparator1
             // 
-            this.menu_flags.Name = "menu_flags";
-            this.menu_flags.Size = new System.Drawing.Size(61, 4);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // closeToolStripMenuItem
             // 
@@ -134,10 +135,10 @@
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // menu_flags
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.menu_flags.Name = "menu_flags";
+            this.menu_flags.Size = new System.Drawing.Size(61, 4);
             // 
             // TLKControl
             // 

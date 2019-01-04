@@ -107,7 +107,7 @@ namespace NWNOver.TwoDA
             List<int> ColumnWidths = new List<int>(IndexNames.Select(x => ValueToString(x).Length));
             for(int i = 0; i < ColumnWidths.Count; i++)
             {
-                ColumnWidths[i] = Math.Max(ColumnWidths[i],GetColumn(i).Max(x => x.Length));
+                ColumnWidths[i] = Math.Max(ColumnWidths[i],GetColumn(i).Max(x => x?.Length ?? 0));
             }
 
             string padSpacing = new string(' ',3);
@@ -124,6 +124,9 @@ namespace NWNOver.TwoDA
 
         public static string ValueToString(string data)
         {
+            if (data == null)
+                data = "****";
+
             if (StringVerify.IsMatch(data))
                 return data;
             else
@@ -221,6 +224,13 @@ namespace NWNOver.TwoDA
             int height = Data.GetLength(1);
             var newData = new string[newWidth, newHeight];
             var newIndexNames = new string[newWidth];
+
+            for (int y = 0; y < newHeight; y++)
+                for (int x = 0; x < newWidth; x++)
+                {
+                    newData[x, y] = "****";
+                    newIndexNames[x] = "";
+                }
 
             for (int y = 0; y < Math.Min(height, newHeight); y++)
                 for (int x = 0; x < Math.Min(width,newWidth); x++)

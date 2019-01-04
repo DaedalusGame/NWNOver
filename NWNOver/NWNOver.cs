@@ -320,7 +320,7 @@ namespace NWNOver
         {
             if (path != null)
                 control.SetPath(path);
-            control.File.Write(File.OpenWrite(control.FilePath));
+            control.File.Write(File.Create(control.FilePath));
         }
 
         private void SaveTLK(TLKControl control, string path)

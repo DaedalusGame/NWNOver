@@ -98,8 +98,8 @@ namespace NWNOver.TLK
         public const uint UserStrRefFlag = 0x01000000;
 
         public string Name;
-        string FileType;
-        string FileVersion;
+        string FileType = "TLK ";
+        string FileVersion = "V3.0";
         uint LanguageId;     
         uint StringEntriesOffset;
 

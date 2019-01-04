@@ -205,7 +205,6 @@
             // 
             this.menu_cut.Image = global::NWNOver.Properties.Resources.icons8_cut_50;
             this.menu_cut.Name = "menu_cut";
-            this.menu_cut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.menu_cut.Size = new System.Drawing.Size(152, 22);
             this.menu_cut.Text = "Cut";
             this.menu_cut.Click += new System.EventHandler(this.menu_cut_Click);
@@ -214,7 +213,6 @@
             // 
             this.menu_copy.Image = global::NWNOver.Properties.Resources.icons8_copy_50;
             this.menu_copy.Name = "menu_copy";
-            this.menu_copy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.menu_copy.Size = new System.Drawing.Size(152, 22);
             this.menu_copy.Text = "Copy";
             this.menu_copy.Click += new System.EventHandler(this.menu_copy_Click);
@@ -223,7 +221,6 @@
             // 
             this.menu_paste.Image = global::NWNOver.Properties.Resources.icons8_paste_50;
             this.menu_paste.Name = "menu_paste";
-            this.menu_paste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.menu_paste.Size = new System.Drawing.Size(152, 22);
             this.menu_paste.Text = "Paste";
             this.menu_paste.Click += new System.EventHandler(this.menu_paste_Click);

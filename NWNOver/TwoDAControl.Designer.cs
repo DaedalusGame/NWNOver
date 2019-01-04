@@ -63,6 +63,7 @@
             this.grid_table.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grid_table.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.grid_table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_table.Location = new System.Drawing.Point(0, 0);
             this.grid_table.Name = "grid_table";
@@ -159,7 +160,7 @@
             this.menu_column_histogram,
             this.setTypeToolStripMenuItem});
             this.menu_column.Name = "menu_column";
-            this.menu_column.Size = new System.Drawing.Size(163, 70);
+            this.menu_column.Size = new System.Drawing.Size(163, 48);
             // 
             // menu_column_histogram
             // 
